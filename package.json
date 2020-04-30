@@ -1,0 +1,38 @@
+{
+  "name": "rest_api_app",
+  "version": "1.0.0",
+  "description": "Rest API app with mongodb, mongoose and express",
+  "main": "dist/app.js",
+  "scripts": {
+    "build-server": "babel src --out-dir dist --source-maps inline --copy-files --no-copy-ignored",
+    "server": "npm run build-server && node dist/app.js",
+    "dev-server": "nodemon --exec babel-node src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/polyfill": "^7.8.7",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.10"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.5",
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.3"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "corejs": "2.0.0",
+          "useBuiltIns": "usage"
+        }
+      ]
+    ]
+  }
+}
