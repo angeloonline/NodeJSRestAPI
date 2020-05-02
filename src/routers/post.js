@@ -9,8 +9,8 @@ const router = express.Router()
 // Get All Post 
 router.get('/', async (req, res) => {
     try {
-        let posts = await Post.find()
-        
+        console.log('Get all Posts')
+        let posts = await Post.find()        
         if (!posts) {
             return res.status(401).send({error: 'Post not found'})
         }
@@ -28,7 +28,7 @@ router.get('/findById', async (req, res) => {
         //Check if is a valid MongoDB Id
         let valid = mongoose.Types.ObjectId.isValid(req.query.postId);
         if (!valid) {
-            return res.status(400).send({error: 'Not a ObjectId id for post'})
+            return res.status(400).send({error: 'Not a valid ObjectId id for post'})
         }
         let post = await Post.findById(req.query.postId)
         

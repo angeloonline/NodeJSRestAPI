@@ -36,11 +36,11 @@ export default {
     }
   ],
   paths: {        
-    '/posts/findById?': {
+    '/posts/findById': {
         get: {
           tags: ['CRUD operations'],
-          description: 'Get post by Id',
-          operationId: 'getPostById',
+          description: 'Get post by Id by query string',
+          operationId: 'postId',
           parameters: [
             {
                 name: 'postId',
@@ -72,7 +72,7 @@ export default {
                   },
                   example: {
                     message: 'Id is missing',
-                    name: 'missing_parameters'
+                    error: 'missing_parameters'
                   }
                 }
               }
