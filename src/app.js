@@ -3,6 +3,9 @@ import load from 'dotenv'
 import path from 'path'
 import DBConnection from './db/DBConnection'
 import postRouter from './routers/post'
+import swaggerUi  from 'swagger-ui-express'
+import apiDocumentation from './doc/apiDocumentation'
+
 
 // configure dotenv to retrieve environment variables
 load.config()
@@ -18,6 +21,7 @@ DBConnection(process.env.MONGODB_URL)
 var app = express()
 
 // Middlewares
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(apiDocumentation));
 // to support JSON-encoded bodies
 app.use(express.json())
 // to support URL-encoded bodies

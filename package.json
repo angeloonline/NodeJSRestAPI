@@ -14,7 +14,8 @@
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
     "express": "^4.17.1",
-    "mongoose": "^5.9.10"
+    "mongoose": "^5.9.10",
+    "swagger-ui-express": "^4.1.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",

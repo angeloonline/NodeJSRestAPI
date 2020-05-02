@@ -23,14 +23,14 @@ router.get('/', async (req, res) => {
 // Get a Post by query id
 router.get('/findById', async (req, res) => {
     try {
-        // View post with id = req.id
-        console.log('Id : ' + req.query.id)
+        // View post with id = req.query.id
+        console.log('Post Id : ' + req.query.postId)
         //Check if is a valid MongoDB Id
-        let valid = mongoose.Types.ObjectId.isValid(req.query.id);
+        let valid = mongoose.Types.ObjectId.isValid(req.query.postId);
         if (!valid) {
             return res.status(400).send({error: 'Not a ObjectId id for post'})
         }
-        let post = await Post.findById(req.query.id)
+        let post = await Post.findById(req.query.postId)
         
         if (!post) {
             return res.status(401).send({error: 'Post not found'})
@@ -42,7 +42,7 @@ router.get('/findById', async (req, res) => {
 })
 
 
-// Get a Post by param postId
+// Get a Post by URL param postId
 router.get('/:postId', async (req, res) => {
     try {
         // View post with id = req.params.postId
@@ -78,11 +78,11 @@ router.post('/', async (req, res) => {
 
 
 // Update a Post
-router.put('/', async (req, res) => {
-    // Create a new post    
-    console.log(req.body)
+router.put('/:postId', async (req, res) => {
+    // Update a post    
+    console.log(`Update post with postId : ${req.params.postId}`)
     try {
-        const updatedPost = await Post.updateOne({_id: req.body.id}, req.body)
+        const updatedPost = await Post.updateOne({_id: req.params.postId}, req.body)
         res.status(201).send(updatedPost)
     } catch (error) {
         res.status(400).send(error)
@@ -91,11 +91,11 @@ router.put('/', async (req, res) => {
 
 
 // Delete a Post
-router.delete('/', async (req, res) => {
-    // Create a new post    
-    console.log(req.body)
+router.delete('/:postId', async (req, res) => {
+    // Delete a post    
+    console.log(`Delete by postId : ${req.params.postId}`)
     try {
-        const removedPost = await Post.remove({_id: req.body.id})
+        const removedPost = await Post.remove({_id: req.params.postId})
         res.status(200).send(removedPost)
     } catch (error) {
         res.status(400).send(error)
